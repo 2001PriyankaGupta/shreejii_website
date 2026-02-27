@@ -51,7 +51,7 @@ const Services = () => {
         },
         {
             icon: Truck,
-            title: "CV Loan",
+            title: "Commercial Vehicle (CV) Loan",
             tag: "Commercial Funding",
             desc: "Specialized commercial vehicle funding tailored to accelerate your transport and logistics business. Benefit from flexible repayment tenures.",
             features: ["Max Funding", "Custom Tenure", "Easy Processing"],
@@ -107,7 +107,7 @@ const Services = () => {
                         {products.map((p, i) => {
                             // Alternate layout left/right based on index
                             const isEven = i % 2 === 0;
-                            const pathStr = p.title.toLowerCase().replace(' ', '-');
+                            const pathStr = p.title.toLowerCase().replace(/ /g, '-').replace(/[()]/g, '');
                             return (
                                 <FadeIn key={i} direction={isEven ? "right" : "left"} delay={0.1}>
                                     <div className={`s-p-row ${isEven ? 'row-normal' : 'row-reverse'}`}>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
     ArrowRight,
@@ -9,7 +10,8 @@ import {
     Handshake,
     Star,
     PlayCircle,
-    Gem
+    Gem,
+    Send
 } from 'lucide-react';
 import { FadeIn, ScaleIn, TextReveal, Magnetic, StaggerContainer, StaggerChild } from '../components/Animations';
 import LightBeams from '../components/LightBeams';
@@ -17,6 +19,83 @@ import LightBeams from '../components/LightBeams';
 const Home = () => {
     const { scrollYProgress } = useScroll();
     const yParallax = useTransform(scrollYProgress, [0, 1], [0, -200]);
+
+    const [formState, setFormState] = useState('idle');
+    const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        mobile: '',
+        inquiry_type: '',
+        message: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    const handleSelectChange = (e) => {
+        setFormData({ ...formData, inquiry_type: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setFormState('sending');
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/inquiry', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Message Sent!',
+                    text: 'Thank you for reaching out. Our expert will contact you within 60 minutes.',
+                    confirmButtonColor: '#0F172A',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    background: '#ffffff',
+                    color: '#0F172A'
+                });
+
+                setFormState('success');
+                setFormData({
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    mobile: '',
+                    inquiry_type: '',
+                    message: ''
+                });
+                setTimeout(() => setFormState('idle'), 5000);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong while sending your message. Please try again.',
+                    confirmButtonColor: '#0F172A'
+                });
+                setFormState('error');
+                setTimeout(() => setFormState('idle'), 3000);
+            }
+        } catch (error) {
+            console.error('Error submitting inquiry:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Connection Error',
+                text: 'Could not connect to the server. Please check your internet or try later.',
+                confirmButtonColor: '#0F172A'
+            });
+            setFormState('error');
+            setTimeout(() => setFormState('idle'), 3000);
+        }
+    };
 
     return (
         <div className="home-page-wrapper">
@@ -58,31 +137,61 @@ const Home = () => {
                             <div className="banking-cta-row">
                                 <Magnetic>
                                     <button className="btn-banking-start">
-                                        Contact Us <ArrowRight size={20} />
+                                        Learn more <ArrowRight size={20} />
                                     </button>
                                 </Magnetic>
-                                <button className="btn-banking-ghost">
-                                    <span>Learn more</span>
-                                </button>
                             </div>
                         </div>
 
                         <div className="hero-banking-visual">
                             <motion.div style={{ y: yParallax }} className="parallax-hero">
                                 <ScaleIn delay={0.6}>
-                                    <div className="banking-glass-card">
-                                        <div className="card-top">
-                                            <div className="card-tag">
-                                                <TrendingUp size={14} /> Revenue
+                                    <div className="home-inquiry-card">
+                                        <div className="h-form-head">
+                                            <h3>Submit Inquiry</h3>
+                                            <p>Our experts reach out within 60 mins.</p>
+                                        </div>
+                                        <form onSubmit={handleSubmit} className="h-modern-form">
+                                            <div className="h-form-row">
+                                                <div className="h-input-group">
+                                                    <input type="text" id="first_name" required placeholder=" " value={formData.first_name} onChange={handleChange} />
+                                                    <label htmlFor="first_name">First Name</label>
+                                                </div>
+                                                <div className="h-input-group">
+                                                    <input type="text" id="last_name" required placeholder=" " value={formData.last_name} onChange={handleChange} />
+                                                    <label htmlFor="last_name">Last Name</label>
+                                                </div>
                                             </div>
-                                            <div className="card-dots">...</div>
-                                        </div>
-                                        <div className="card-amount">$10,629</div>
-                                        <div className="card-sub">Last 30 days</div>
-                                        <div className="card-footer-stats">
-                                            <div className="percent-pill">+26%</div>
-                                            <span>Since previous 30 days</span>
-                                        </div>
+                                            <div className="h-form-row">
+                                                <div className="h-input-group">
+                                                    <input type="email" id="email" required placeholder=" " value={formData.email} onChange={handleChange} />
+                                                    <label htmlFor="email">Email</label>
+                                                </div>
+                                                <div className="h-input-group">
+                                                    <input type="tel" id="mobile" required placeholder=" " value={formData.mobile} onChange={handleChange} />
+                                                    <label htmlFor="mobile">Mobile</label>
+                                                </div>
+                                            </div>
+                                            <div className="h-input-group">
+                                                <select id="inquiry_type" required value={formData.inquiry_type} onChange={handleSelectChange}>
+                                                    <option value="" disabled hidden>Select Inquiry Type</option>
+                                                    <option value="Loan Application Status">Loan Application Status</option>
+                                                    <option value="DSA / Partner Program">DSA / Partner Program</option>
+                                                    <option value="Technical Support">Technical Support</option>
+                                                    <option value="Other Queries">Other Queries</option>
+                                                </select>
+                                            </div>
+                                            <div className="h-input-group">
+                                                <textarea id="message" rows="2" required placeholder=" " value={formData.message} onChange={handleChange}></textarea>
+                                                <label htmlFor="message">How can we help?</label>
+                                            </div>
+                                            <button type="submit" disabled={formState === 'sending' || formState === 'success'} className={`h-submit-btn ${formState}`}>
+                                                {formState === 'idle' && <>Send Message <Send size={16} /></>}
+                                                {formState === 'sending' && "Sending..."}
+                                                {formState === 'success' && "Success!"}
+                                                {formState === 'error' && "Fail!"}
+                                            </button>
+                                        </form>
                                     </div>
                                 </ScaleIn>
 
@@ -474,6 +583,91 @@ const Home = () => {
         }
         .blue-orb { top: -80px; left: -80px; background: #3b82f6; }
         .gold-orb { bottom: -80px; right: -80px; background: #D4AF37; }
+
+        /* HOME INQUIRY CARD */
+        .home-inquiry-card {
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(30px);
+          -webkit-backdrop-filter: blur(30px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 30px;
+          border-radius: 24px;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+          width: 100%;
+          max-width: 500px;
+        }
+
+        .h-form-head h3 { color: white; font-size: 24px; font-weight: 900; margin-bottom: 5px; letter-spacing: -1px; }
+        .h-form-head p { color: #94A3B8; font-size: 13px; font-weight: 700; margin-bottom: 25px; }
+
+        .h-modern-form { display: flex; flex-direction: column; gap: 18px; }
+        .h-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .h-input-group { position: relative; }
+        .h-input-group input, .h-input-group select, .h-input-group textarea {
+          width: 100%;
+          padding: 12px 15px;
+          background: rgba(255,255,255,0.03);
+          border: 1.5px solid rgba(255,255,255,0.1);
+          border-radius: 12px;
+          color: white;
+          font-size: 14px;
+          outline: none;
+          transition: all 0.3s;
+        }
+        .h-input-group select option {
+          background-color: #ffffff;
+          color: #000000;
+        }
+        .h-input-group textarea { resize: none; }
+        .h-input-group label {
+          position: absolute;
+          left: 15px;
+          top: 12px;
+          color: #64748B;
+          font-size: 14px;
+          pointer-events: none;
+          transition: all 0.3s;
+        }
+
+        .h-input-group input:focus, .h-input-group select:focus, .h-input-group textarea:focus {
+          border-color: #D4AF37;
+          background: rgba(255,255,255,0.08);
+        }
+
+        .h-input-group input:focus ~ label, .h-input-group input:not(:placeholder-shown) ~ label,
+        .h-input-group textarea:focus ~ label, .h-input-group textarea:not(:placeholder-shown) ~ label {
+          top: -8px;
+          left: 10px;
+          font-size: 11px;
+          font-weight: 900;
+          color: #D4AF37;
+          background: #020617;
+          padding: 0 5px;
+        }
+
+        .h-submit-btn {
+          background: white;
+          color: #020617;
+          border: none;
+          padding: 15px;
+          border-radius: 12px;
+          font-weight: 900;
+          font-size: 14px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          cursor: pointer;
+          transition: all 0.3s;
+          margin-top: 5px;
+        }
+        .h-submit-btn:hover { background: #D4AF37; transform: translateY(-2px); }
+        .h-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .h-submit-btn.success { background: #10b981; color: white; }
+        .h-submit-btn.error { background: #ef4444; color: white; }
 
 
         /* ----- BOTTOM LIGHT SECTION ----- */

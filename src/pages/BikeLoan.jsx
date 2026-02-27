@@ -31,7 +31,7 @@ const BikeLoan = () => {
                             </p>
 
                             <div className="bk-actions">
-                                <button className="bk-btn-primary" onClick={() => navigate('/contact')}>Calculate Custom EMI</button>
+                                <button className="bk-btn-primary" onClick={() => navigate('/')}>Calculate Custom EMI</button>
                             </div>
                         </FadeIn>
                     </div>

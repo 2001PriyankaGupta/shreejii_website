@@ -31,7 +31,7 @@ const CVLoan = () => {
                                 <p className="cv-desc">
                                     Commercial Vehicles generate revenue. We provide aggressive, structured capital solutions tailored for transporters and logistics firms to acquire heavy and light commercial assets without disrupting operational cash flows.
                                 </p>
-                                <button className="cv-btn" onClick={() => navigate('/contact')}>
+                                <button className="cv-btn" onClick={() => navigate('/')}>
                                     Discuss Deployment <ArrowRight size={18} />
                                 </button>
                             </FadeIn>

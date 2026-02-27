@@ -3,12 +3,12 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { ScrollProgress } from './components/Animations'; // Added this import
+import { ScrollProgress } from './components/Animations';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
 import Partners from './pages/Partners';
-import Contact from './pages/Contact';
 import InstantLoan from './pages/InstantLoan';
 import PersonalLoan from './pages/PersonalLoan';
 import CarLoan from './pages/CarLoan';
@@ -22,7 +22,8 @@ const App = () => {
 
   return (
     <div className="main-layout">
-      <ScrollProgress /> {/* Added this component */}
+      <ScrollToTop />
+      <ScrollProgress />
       <Header />
 
       <AnimatePresence mode="wait">
@@ -31,7 +32,6 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/partners" element={<Partners />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/instant-loan" element={<InstantLoan />} />
           <Route path="/personal-loan" element={<PersonalLoan />} />
           <Route path="/car-loan" element={<CarLoan />} />

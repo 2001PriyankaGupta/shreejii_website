@@ -34,7 +34,7 @@ const PersonalLoan = () => {
                                     Life events shouldn't wait for liquidity. Secure up to ₹25 Lakhs with our premium personal credit line.
                                     We rely on your cash-flow strength, not collateral.
                                 </p>
-                                <button className="pl-btn-gold" onClick={() => navigate('/contact')}>
+                                <button className="pl-btn-gold" onClick={() => navigate('/')}>
                                     Check Eligibility <ArrowRight size={18} />
                                 </button>
                             </FadeIn>

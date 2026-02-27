@@ -25,8 +25,8 @@ const Footer = () => {
           <div className="footer-links">
             <h3>Loan Products</h3>
             <ul>
-              {['Instant Loan', 'Personal Loan', 'Car Loan', 'Bike Loan', 'CV Loan'].map(link => {
-                const pathStr = link.toLowerCase().replace(' ', '-');
+              {['Instant Loan', 'Personal Loan', 'Car Loan', 'Bike Loan', 'Commercial Vehicle (CV) Loan'].map(link => {
+                const pathStr = link.toLowerCase().replace(/ /g, '-').replace(/[()]/g, '');
                 return (
                   <li key={link}><ArrowRight size={12} /> <Link to={`/${pathStr}`}>{link}</Link></li>
                 );

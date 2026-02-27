@@ -30,7 +30,7 @@ const CarLoan = () => {
                             <p className="cl-desc mx-auto">
                                 100% On-road financing for elite sedans, SUVs, and EVs. We clear the showroom hurdles so you can focus on the journey.
                             </p>
-                            <button className="cl-btn" onClick={() => navigate('/contact')}>
+                            <button className="cl-btn" onClick={() => navigate('/')}>
                                 Secure Funding <ArrowRight size={18} />
                             </button>
                         </FadeIn>

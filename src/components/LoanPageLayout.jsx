@@ -30,10 +30,10 @@ const LoanPageLayout = ({ data }) => {
                             <p className="lp-desc">{data.heroDesc}</p>
 
                             <div className="lp-hero-actions">
-                                <button className="lp-btn-primary" onClick={() => navigate('/contact')}>
+                                <button className="lp-btn-primary" onClick={() => navigate('/')}>
                                     Apply Now <ArrowRight size={20} />
                                 </button>
-                                <button className="lp-btn-outline" onClick={() => navigate('/contact')}>
+                                <button className="lp-btn-outline" onClick={() => navigate('/')}>
                                     Calculate EMI
                                 </button>
                             </div>

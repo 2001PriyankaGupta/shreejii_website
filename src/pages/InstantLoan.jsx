@@ -37,7 +37,7 @@ const InstantLoan = () => {
                             100% paperless. Zero branch visits.
                         </p>
                         <div className="il-actions justify-center">
-                            <button className="il-btn-primary" onClick={() => navigate('/contact')}>
+                            <button className="il-btn-primary" onClick={() => navigate('/')}>
                                 Activate Credit Line <ArrowRight size={18} />
                             </button>
                         </div>
