@@ -13,11 +13,13 @@ import {
     Gem,
     Send
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { FadeIn, ScaleIn, TextReveal, Magnetic, StaggerContainer, StaggerChild } from '../components/Animations';
 import LightBeams from '../components/LightBeams';
 
 const Home = () => {
     const { scrollYProgress } = useScroll();
+    const navigate = useNavigate();
     const yParallax = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
     const [formState, setFormState] = useState('idle');
@@ -31,7 +33,18 @@ const Home = () => {
     });
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value });
+        const { id, value } = e.target;
+
+        // Mobile number validation: only numbers and max 10 digits
+        if (id === 'mobile') {
+            const numericValue = value.replace(/[^0-9]/g, '');
+            if (numericValue.length <= 10) {
+                setFormData({ ...formData, [id]: numericValue });
+            }
+            return;
+        }
+
+        setFormData({ ...formData, [id]: value });
     };
 
     const handleSelectChange = (e) => {
@@ -40,10 +53,32 @@ const Home = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Final validation check
+        if (!formData.first_name || !formData.last_name || !formData.email || !formData.mobile || !formData.inquiry_type || !formData.message) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Required Fields',
+                text: 'Please fill in all mandatory fields before submitting.',
+                confirmButtonColor: '#0F172A'
+            });
+            return;
+        }
+
+        if (formData.mobile.length !== 10) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Invalid Mobile Number',
+                text: 'Please enter a valid 10-digit mobile number.',
+                confirmButtonColor: '#0F172A'
+            });
+            return;
+        }
+
         setFormState('sending');
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/inquiry', {
+            const response = await fetch('https://argosmob.site/shreeji-finance/api/inquiry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -136,7 +171,7 @@ const Home = () => {
 
                             <div className="banking-cta-row">
                                 <Magnetic>
-                                    <button className="btn-banking-start">
+                                    <button className="btn-banking-start" onClick={() => navigate('/services')}>
                                         Learn more <ArrowRight size={20} />
                                     </button>
                                 </Magnetic>
@@ -168,7 +203,15 @@ const Home = () => {
                                                     <label htmlFor="email">Email</label>
                                                 </div>
                                                 <div className="h-input-group">
-                                                    <input type="tel" id="mobile" required placeholder=" " value={formData.mobile} onChange={handleChange} />
+                                                    <input
+                                                        type="tel"
+                                                        id="mobile"
+                                                        required
+                                                        placeholder=" "
+                                                        value={formData.mobile}
+                                                        onChange={handleChange}
+                                                        maxLength={10}
+                                                    />
                                                     <label htmlFor="mobile">Mobile</label>
                                                 </div>
                                             </div>
