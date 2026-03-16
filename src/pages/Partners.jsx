@@ -54,7 +54,7 @@ const Partners = () => {
                         <FadeIn direction="up">
                             <div className="p-badge">
                                 <Handshake size={14} />
-                                <span>SHREEJI PARTNER NETWORK</span>
+                                <span>SHREEJA PARTNER NETWORK</span>
                             </div>
                             <h1 className="p-h1">Accelerate Your <br /><span className="p-gold-text">Financial Business.</span></h1>
                             <p className="p-hero-desc">

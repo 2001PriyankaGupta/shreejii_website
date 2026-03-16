@@ -43,7 +43,7 @@ const About = () => {
                         <FadeIn delay={0.6} direction="up">
                             <div className="a-hero-desc-box mx-auto">
                                 <p className="a-lead-text">
-                                    Established with a singular mandate to democratize credit, <strong>Shreeji Finance</strong> operates at the intersection of deep liquidity and advanced underwriting technology.
+                                    Established with a singular mandate to democratize credit, <strong>Shreeja Finance</strong> operates at the intersection of deep liquidity and advanced underwriting technology.
                                 </p>
                                 <p className="a-sub-text">
                                     By stripping away legacy banking friction, we deliver institutional-grade capital directly to the consumer and SME sectors with unprecedented velocity and rigorous compliance.
@@ -174,7 +174,7 @@ const About = () => {
                             "Capital is the fuel of progress. We ensure the pump never runs dry for those who dare to dream."
                         </h2>
                         <div className="a-author">
-                            BOARD OF DIRECTORS, SHREEJI FINANCE
+                            BOARD OF DIRECTORS, SHREEJA FINANCE
                         </div>
                     </FadeIn>
                 </div>

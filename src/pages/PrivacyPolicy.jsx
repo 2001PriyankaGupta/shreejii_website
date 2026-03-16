@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
                         <FadeIn direction="up" delay={0.2}>
                             <div className="lm-intro-text">
                                 <p>Last Updated: October 15, 2026</p>
-                                <p>This Privacy Policy describes how Shreeji Finance ("we", "us", or "our") collects, uses, and shares your personal information when you use our services.</p>
+                                <p>This Privacy Policy describes how Shreeja Finance ("we", "us", or "our") collects, uses, and shares your personal information when you use our services.</p>
                             </div>
 
                             <div className="lm-item">

@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="footer-brand">
             <div className="logo-section">
               <div className="logo-box">S</div>
-              <h2 className="logo-text">SHREEJI <span className="gold">FINANCE</span></h2>
+              <h2 className="logo-text">SHREEJA <span className="gold">FINANCE</span></h2>
             </div>
             <p className="footer-desc">
               Redefining financial accessibility across India with technology-driven lending solutions and local trust.
@@ -63,13 +63,13 @@ const Footer = () => {
             </div>
             <div className="contact-item">
               <div className="contact-icon"><Mail size={18} /></div>
-              <span>Email: support@shreejifinance.com</span>
+              <span>Email: support@shreejafinance.com</span>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>© 2026 Shreeji Finance Limited. All Rights Reserved.</p>
+          <p>© 2026 Shreeja Finance Limited. All Rights Reserved.</p>
           <p className="nbfc-tag">NBFC Registration No. N-12.XXXXX | Subject to Credit Approval</p>
         </div>
       </div>

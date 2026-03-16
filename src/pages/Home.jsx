@@ -78,7 +78,7 @@ const Home = () => {
         setFormState('sending');
 
         try {
-            const response = await fetch('https://argosmob.site/shreeji-finance/api/inquiry', {
+            const response = await fetch('https://argosmob.site/shreeja-finance/api/inquiry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -342,7 +342,7 @@ const Home = () => {
 
                                 <div className="smoke-p-container">
                                     <p className="smoke-p">
-                                        As a trusted NBFC licensed and regulated by the Reserve Bank of India, Shreeji Finance is fundamentally re-architecting the lending landscape. We merge deep liquidity pools with an ultra-secure, decentralized technology stack to provide risk-free capital access.
+                                        As a trusted NBFC licensed and regulated by the Reserve Bank of India, Shreeja Finance is fundamentally re-architecting the lending landscape. We merge deep liquidity pools with an ultra-secure, decentralized technology stack to provide risk-free capital access.
                                     </p>
                                     <p className="smoke-p">
                                         Our state-of-the-art encrypted gateways and proprietary AI underwriting ensure 100% data privacy and seamless end-to-end digital lifecycles. Experience 24/7 financial support designed primarily for unmatched transparency, speed, and massive scale.
@@ -397,7 +397,7 @@ const Home = () => {
                                     </div>
                                     <div className="dp-card">
                                         <div className="dp-card-top">
-                                            <div className="card-logo">SHREEJI</div>
+                                            <div className="card-logo">SHREEJA</div>
                                             <span className="card-tag">Active</span>
                                         </div>
                                         <div className="card-num">L/N **** **** 8545</div>

@@ -30,7 +30,7 @@ const TermsOfUse = () => {
                         <FadeIn direction="up" delay={0.2}>
                             <div className="lm-intro-text">
                                 <p>Effective Date: October 15, 2026</p>
-                                <p>These terms govern your access to the platforms and services provided by Shreeji Finance. By using our site, you agree to these legal parameters.</p>
+                                <p>These terms govern your access to the platforms and services provided by Shreeja Finance. By using our site, you agree to these legal parameters.</p>
                             </div>
 
                             <div className="lm-item">
@@ -48,7 +48,7 @@ const TermsOfUse = () => {
                             <div className="lm-item">
                                 <div className="lm-icon-box"><FileSignature size={24} /></div>
                                 <h3>3. Intellectual Dominion</h3>
-                                <p>All algorithms, UI designs, and brand motifs remain the exclusive intellectual property of Shreeji Finance. Unauthorized reproduction is strictly prohibited.</p>
+                                <p>All algorithms, UI designs, and brand motifs remain the exclusive intellectual property of Shreeja Finance. Unauthorized reproduction is strictly prohibited.</p>
                             </div>
 
                             <div className="lm-item">

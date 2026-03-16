@@ -37,7 +37,7 @@ const Header = () => {
               <span className="info-text">RBI Licensed NBFC • Secure & Trusted Banking Partner</span>
               <div className="contact-links">
                 <a href="tel:18001234567"><Phone size={14} /> 1800-123-4567</a>
-                <a href="mailto:contact@shreejifinance.com"><Mail size={14} /> contact@shreejifinance.com</a>
+                <a href="mailto:contact@shreejafinance.com"><Mail size={14} /> contact@shreejafinance.com</a>
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@ const Header = () => {
             {/* LOGO */}
             <NavLink to="/" className="logo-section">
               <div className="logo-box">S</div>
-              <span className="logo-text">SHREEJI <span className="gold">FINANCE</span></span>
+              <span className="logo-text">SHREEJA <span className="gold">FINANCE</span></span>
             </NavLink>
 
             {/* DESKTOP NAV */}
@@ -83,7 +83,7 @@ const Header = () => {
           >
             <div className="mobile-menu">
               <div className="mobile-header">
-                <span className="logo-text">SHREEJI <span className="gold">FINANCE</span></span>
+                <span className="logo-text">SHREEJA <span className="gold">FINANCE</span></span>
                 <button onClick={() => setMobileMenuOpen(false)}><X size={28} /></button>
               </div>
               <div className="mobile-links">
