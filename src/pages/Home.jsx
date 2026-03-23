@@ -78,7 +78,7 @@ const Home = () => {
         setFormState('sending');
 
         try {
-            const response = await fetch('https://argosmob.site/shreeja-finance/api/inquiry', {
+            const response = await fetch('https://shreejafinance.online/api/inquiry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
